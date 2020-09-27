@@ -9,11 +9,57 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Choices = require("inquirer/lib/objects/choices");
+const employess = []
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+console.log("Please build your team")
+const managerQuestions =[
+    {
+        type: "input",
+        message: "What is your Managers Name? ",
+        name: "name"
 
+    }, {
+        type: "input",
+        message: "What is your Managers id? ",
+        name: "id"
+    }, {
+        type: "input",
+        message: "What is your Managers email? ",
+        name: "email"
+    }, {
+        type: "input",
+        message: "What is your Managers office number? ",
+        name: "officeNumber"
+    }];
+
+    const employeeType = [{
+        type: "list",
+        message: "What kind of employee do you want to add next?",
+        name:"etype",
+        choices: [
+            "Engineer",
+            "Inter",
+            "None"
+        ]
+
+    }]
+    function init (){
+        inquirer
+            .prompt(managerQuestions)
+            .then(managerAnswers =>{
+                console.log(managerAnswers);
+                const manager = new Manager(managerAnswers.name, id, email, officeNumber);
+                employees.push(manager),
+                inquirer.prompt(employeeType).then(eAnswers=>{
+                    console.log(eAnswers)
+                })
+                
+            })
+    } init()
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -33,3 +79,14 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+// const html = render(employees);
+// fs.writeFile(outputPath, html, function (err) {
+//     if (err) {
+//         throw err;
+
+//     } else {
+//         console.log("Success!")
+//     }
+
+// })
