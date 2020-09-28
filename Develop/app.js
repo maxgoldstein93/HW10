@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const Choices = require("inquirer/lib/objects/choices");
 const { prompt } = require("inquirer");
-const employess = []
+const employees = []
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -95,8 +95,8 @@ function prompt1() {
         .prompt(managerQuestions)
         .then(managerAnswers => {
             console.log(managerAnswers);
-            // const manager = new Manager(managerAnswers.name, id, email, officeNumber);
-            // employees.push(manager);
+            const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
+            employees.push(manager);
             prompt2();
 
         });
@@ -109,17 +109,17 @@ function prompt2() {
             prompt3();
         } else if (employeeAnswers.etype === "Intern") {
             prompt4()
-        // } else {
-        //     const html = render(employees);
-        //     fs.writeFile(outputPath, html, function (err) {
-        //         if (err) {
-        //             throw err;
+        } else {
+            const html = render(employees);
+            fs.writeFile(outputPath, html, function (err) {
+                if (err) {
+                    throw err;
 
-        //         } else {
-        //             console.log("Success!")
-        //         }
+                } else {
+                    console.log("Success!")
+                }
 
-        //     })
+            })
 
 
 
@@ -131,16 +131,16 @@ function prompt2() {
 function prompt3() {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
         console.log(engineerAnswers);
-        // const engineer = new Engineer(engineerAnswers.name, id, email, officeNumber);
-        // employees.push(engineer);
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.officeNumber);
+        employees.push(engineer);
         prompt2()
     });
 }
 function prompt4() {
     inquirer.prompt(internQuestions).then(internAnswers => {
         console.log(internAnswers);
-        // const intern = new Intern(InternAnswers.name, id, email, officeNumber);
-        // employees.push(intern);
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.officeNumber);
+        employees.push(intern);
         prompt2()
 
     });
