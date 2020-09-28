@@ -10,13 +10,14 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const Choices = require("inquirer/lib/objects/choices");
+const { prompt } = require("inquirer");
 const employess = []
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 console.log("Please build your team")
-const managerQuestions =[
+const managerQuestions = [
     {
         type: "input",
         message: "What is your Managers Name? ",
@@ -35,20 +36,20 @@ const managerQuestions =[
         message: "What is your Managers office number? ",
         name: "officeNumber"
     }];
-    
-    const employeeType = [{
-        type: "list",
-        message: "What kind of employee do you want to add next?",
-        name:"etype",
-        choices: [
-            "Engineer",
-            "Intern",
-            "None"
-        ]
 
-    }];
+const employeeType = [{
+    type: "list",
+    message: "What kind of employee do you want to add next?",
+    name: "etype",
+    choices: [
+        "Engineer",
+        "Intern",
+        "None"
+    ]
 
-    const engineerQuestions = [
+}];
+
+const engineerQuestions = [
     {
         type: "input",
         message: "What is your Engineers Name? ",
@@ -68,34 +69,83 @@ const managerQuestions =[
         name: "github"
     }];
 
-    prompt1();
-    function prompt1 (){
-        inquirer
-            .prompt(managerQuestions)
-            .then(managerAnswers =>{
-                console.log(managerAnswers);
-                // const manager = new Manager(managerAnswers.name, id, email, officeNumber);
-                // employees.push(manager);
-                prompt2();
-                   
-            });
-    } 
+const internQuestions = [
+    {
+        type: "input",
+        message: "What is your Interns Name? ",
+        name: "name"
 
-    function prompt2(){
-        inquirer.prompt(employeeType).then(employeeAnswers=>{
-            console.log(employeeAnswers);
-            if(employeeAnswers.etype === "Engineer"){
-                prompt3(); 
-                
-            }
+    }, {
+        type: "input",
+        message: "What is your Internss id? ",
+        name: "id"
+    }, {
+        type: "input",
+        message: "What is your Internss email? ",
+        name: "email"
+    }, {
+        type: "input",
+        message: "What is your Interns College? ",
+        name: "college"
+    }];
+
+prompt1();
+function prompt1() {
+    inquirer
+        .prompt(managerQuestions)
+        .then(managerAnswers => {
+            console.log(managerAnswers);
+            // const manager = new Manager(managerAnswers.name, id, email, officeNumber);
+            // employees.push(manager);
+            prompt2();
+
         });
-    }
-    
-    function prompt3(){
-        inquirer.prompt(engineerQuestions).then(engineerAnswers =>{
-            console.log(engineerAnswers);
-        });
-    }
+}
+
+function prompt2() {
+    inquirer.prompt(employeeType).then(employeeAnswers => {
+        console.log(employeeAnswers);
+        if (employeeAnswers.etype === "Engineer") {
+            prompt3();
+        } else if (employeeAnswers.etype === "Intern") {
+            prompt4()
+        // } else {
+        //     const html = render(employees);
+        //     fs.writeFile(outputPath, html, function (err) {
+        //         if (err) {
+        //             throw err;
+
+        //         } else {
+        //             console.log("Success!")
+        //         }
+
+        //     })
+
+
+
+
+        }
+    });
+}
+
+function prompt3() {
+    inquirer.prompt(engineerQuestions).then(engineerAnswers => {
+        console.log(engineerAnswers);
+        // const engineer = new Engineer(engineerAnswers.name, id, email, officeNumber);
+        // employees.push(engineer);
+        prompt2()
+    });
+}
+function prompt4() {
+    inquirer.prompt(internQuestions).then(internAnswers => {
+        console.log(internAnswers);
+        // const intern = new Intern(InternAnswers.name, id, email, officeNumber);
+        // employees.push(intern);
+        prompt2()
+
+    });
+
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -116,13 +166,4 @@ const managerQuestions =[
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-// const html = render(employees);
-// fs.writeFile(outputPath, html, function (err) {
-//     if (err) {
-//         throw err;
 
-//     } else {
-//         console.log("Success!")
-//     }
-
-// })
