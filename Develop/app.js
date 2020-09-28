@@ -131,7 +131,7 @@ function prompt2() {
 function prompt3() {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
         console.log(engineerAnswers);
-        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.officeNumber);
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
         employees.push(engineer);
         prompt2()
     });
@@ -139,7 +139,7 @@ function prompt3() {
 function prompt4() {
     inquirer.prompt(internQuestions).then(internAnswers => {
         console.log(internAnswers);
-        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.officeNumber);
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.college);
         employees.push(intern);
         prompt2()
 
