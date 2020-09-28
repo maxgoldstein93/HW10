@@ -35,31 +35,67 @@ const managerQuestions =[
         message: "What is your Managers office number? ",
         name: "officeNumber"
     }];
-
+    
     const employeeType = [{
         type: "list",
         message: "What kind of employee do you want to add next?",
         name:"etype",
         choices: [
             "Engineer",
-            "Inter",
+            "Intern",
             "None"
         ]
 
-    }]
-    function init (){
+    }];
+
+    const engineerQuestions = [
+    {
+        type: "input",
+        message: "What is your Engineers Name? ",
+        name: "name"
+
+    }, {
+        type: "input",
+        message: "What is your Engineers id? ",
+        name: "id"
+    }, {
+        type: "input",
+        message: "What is your Engineers email? ",
+        name: "email"
+    }, {
+        type: "input",
+        message: "What is your Engineers Github name? ",
+        name: "github"
+    }];
+
+    prompt1();
+    function prompt1 (){
         inquirer
             .prompt(managerQuestions)
             .then(managerAnswers =>{
                 console.log(managerAnswers);
-                const manager = new Manager(managerAnswers.name, id, email, officeNumber);
-                employees.push(manager),
-                inquirer.prompt(employeeType).then(eAnswers=>{
-                    console.log(eAnswers)
-                })
+                // const manager = new Manager(managerAnswers.name, id, email, officeNumber);
+                // employees.push(manager);
+                prompt2();
+                   
+            });
+    } 
+
+    function prompt2(){
+        inquirer.prompt(employeeType).then(employeeAnswers=>{
+            console.log(employeeAnswers);
+            if(employeeAnswers.etype === "Engineer"){
+                prompt3(); 
                 
-            })
-    } init()
+            }
+        });
+    }
+    
+    function prompt3(){
+        inquirer.prompt(engineerQuestions).then(engineerAnswers =>{
+            console.log(engineerAnswers);
+        });
+    }
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
