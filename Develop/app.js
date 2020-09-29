@@ -22,51 +22,51 @@ const managerQuestions = [
         type: "input",
         message: "What is your Managers Name? ",
         name: "name",
-        validate: function (inputtxt)
-        {
-         var letters = /^[A-Za-z]+$/;
-         var validate = inputtxt.match(letters);
-         if(validate)
-           {
-            return true;
-           }
-         else
-           {
-           return "Please use text"
-           }
+        validate: function (inputtxt) {
+            var letters = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+            var validate = inputtxt.match(letters);
+            if (validate) {
+                return true;
+            }
+            else {
+                return "Please use first and last name"
+            }
         }
 
     }, {
         type: "input",
         message: "What is your Managers id? ",
         name: "id",
-        validate: function(nums)
-        {
+        validate: function (nums) {
             var idCheck = nums.match(/^([0-9]{1,4})$/)
-            if(idCheck)
-            {
+            if (idCheck) {
                 return (true)
             }
-            return "Please enter a valid id"
+            return "Please enter a valid id between number 0-9 and maximum lenght of 4"
         }
     }, {
         type: "input",
         message: "What is your Managers email? ",
         name: "email",
-        validate: function (mail) 
-        {
-         var emailCheck = mail.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-         if (emailCheck)
-          {
-            return (true)
-          }
-    
-            return "Please enter valid email"
+        validate: function (mail) {
+            var emailCheck = mail.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+            if (emailCheck) {
+                return (true)
+            }
+
+            return "Please enter valid email such as example@email.com"
         }
-    },{
+    }, {
         type: "input",
         message: "What is your Managers office number? ",
-        name: "officeNumber"
+        name: "officeNumber",
+        validate: function (nums) {
+            var idCheck = nums.match(/^([0-9]{1,4})$/)
+            if (idCheck) {
+                return (true)
+            }
+            return "Please enter a valid office number between 0-9 and a maximum lenght of 4"
+        }
     }];
 
 const employeeType = [{
@@ -85,50 +85,101 @@ const engineerQuestions = [
     {
         type: "input",
         message: "What is your Engineers Name? ",
-        name: "name"
+        name: "name",
+        validate: function (inputtxt) {
+            var letters = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+            var validate = inputtxt.match(letters);
+            if (validate) {
+                return true;
+            }
+            else {
+                return "Please use first and last name"
+            }
+        }
 
     }, {
         type: "input",
         message: "What is your Engineers id? ",
-        name: "id"
+        name: "id",
+        validate: function (nums) {
+            var idCheck = nums.match(/^([0-9]{1,4})$/)
+            if (idCheck) {
+                return (true)
+            }
+            return "Please enter a valid id between number 0-9 and maximum lenght of 4"
+        }
     }, {
         type: "input",
         message: "What is your Engineers email? ",
         name: "email",
-        validate: function (mail) 
-        {
-         var emailCheck = mail.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-         if (emailCheck)
-          {
-            return (true)
-          }
-            return "Please enter valid email"
+        validate: function (mail) {
+            var emailCheck = mail.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+            if (emailCheck) {
+                return (true)
+            }
+            return "Please enter valid email such as example@email.com"
         }
 
     }, {
         type: "input",
         message: "What is your Engineers Github name? ",
-        name: "github"
+        name: "github",
+
     }];
 
 const internQuestions = [
     {
         type: "input",
         message: "What is your Interns Name? ",
-        name: "name"
+        name: "name",
+        validate: function (inputtxt) {
+            var letters = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+            var validate = inputtxt.match(letters);
+            if (validate) {
+                return true;
+            }
+            else {
+                return "Please use first and last name"
+            }
+        }
 
     }, {
         type: "input",
-        message: "What is your Internss id? ",
-        name: "id"
+        message: "What is your Interns id? ",
+        name: "id",
+        validate: function (nums) {
+            var idCheck = nums.match(/^([0-9]{1,4})$/)
+            if (idCheck) {
+                return (true)
+            }
+            return "Please enter a valid id between number 0-9 and maximum lenght of 4"
+        }
     }, {
         type: "input",
-        message: "What is your Internss email? ",
-        name: "email"
+        message: "What is your Interns email? ",
+        name: "email",
+        validate: function (mail) {
+            var emailCheck = mail.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+            if (emailCheck) {
+                return (true)
+            }
+
+            return "Please enter valid email such as example@email.com"
+        }
     }, {
         type: "input",
         message: "What is your Interns College? ",
-        name: "college"
+        name: "college",
+        validate: function (inputtxt) {
+            var letters = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+            var validate = inputtxt.match(letters);
+            if (validate) {
+                return true;
+            }
+            else {
+                return "Please enter a valid College or University"
+            }
+        }
     }];
 
 prompt1();
