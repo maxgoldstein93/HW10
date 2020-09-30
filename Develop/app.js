@@ -187,7 +187,6 @@ function prompt1() {
     inquirer
         .prompt(managerQuestions)
         .then(managerAnswers => {
-            console.log(managerAnswers);
             const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
             employees.push(manager);
             prompt2();
@@ -197,7 +196,6 @@ function prompt1() {
 
 function prompt2() {
     inquirer.prompt(employeeType).then(employeeAnswers => {
-        console.log(employeeAnswers);
         if (employeeAnswers.etype === "Engineer") {
             prompt3();
         } else if (employeeAnswers.etype === "Intern") {
@@ -223,7 +221,6 @@ function prompt2() {
 
 function prompt3() {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
-        console.log(engineerAnswers);
         const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
         employees.push(engineer);
         prompt2()
@@ -231,7 +228,6 @@ function prompt3() {
 }
 function prompt4() {
     inquirer.prompt(internQuestions).then(internAnswers => {
-        console.log(internAnswers);
         const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.college);
         employees.push(intern);
         prompt2()
